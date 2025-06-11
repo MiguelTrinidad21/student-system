@@ -68,7 +68,7 @@ app.get('/api/get_student/:id', (req, res) => {
     const sql = "SELECT * FROM student_details WHERE `id` = ?"
 
     db.query(sql, [id], (err, result) => {
-        if (err) return res.status(500).json({ message: "Server error" })
+        if (err) return res.status(500).json({ message: "Server error!" })
         if (result.length === 0) {
             return res.status(404).json({ message: "Student not found" })
         }
