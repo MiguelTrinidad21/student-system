@@ -14,5 +14,5 @@ export default defineConfig({
       }
     }
   },
-  base: "/student-system"
+  base: process.env.VITE_BASE_PATH || "/student-system"
 })

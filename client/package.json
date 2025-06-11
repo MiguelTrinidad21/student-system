@@ -1,6 +1,5 @@
 {
   "name": "client",
-  "homepage": "https://MiguelTrinidad21.github.io/student-system",
   "private": true,
   "version": "0.0.0",
   "type": "module",
