@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const mysql = require('mysql')
 const cors = require('cors')
@@ -9,13 +11,13 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(cors())
 app.use(express.json())
 
-const port = 5000
+const port = process.env.PORT || 5000
 
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "students"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 })
 
 app.post('/api/add_user', (req, res) => {
