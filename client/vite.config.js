@@ -13,6 +13,6 @@ export default defineConfig({
         secure: false,
       }
     }
-  },
-  base: process.env.VITE_BASE_PATH || "/student-system"
+  }
+  
 })
