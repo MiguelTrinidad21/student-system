@@ -4,13 +4,17 @@ import { Link, useParams, useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || '', // fallback to '' for local dev proxy
+})
+
 function Edit() {
 
     const [data, setData] = useState(null)
     const { id } = useParams()
 
     useEffect(() => {
-        axios.get(`/api/get_student/${id}`)
+        axiosInstance.get(`/api/get_student/${id}`)
         .then(res => {
             setData(res.data[0])
 
@@ -24,7 +28,7 @@ function Edit() {
     function handleSubmit(e) {
         e.preventDefault()
 
-        axios.post(`/api/edit/${id}`, data)
+        axiosInstance.post(`/api/edit/${id}`, data)
         .then((res) => {
             navigate('/')
             console.log(res)

@@ -4,6 +4,9 @@ import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
 
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || '', // fallback to '' for local dev proxy
+})
 
 function Home() {
     const [data, setData] = useState([])
@@ -16,7 +19,7 @@ function Home() {
             setDeleted(false)
         }
 
-        axios.get('/api/students')
+        axiosInstance.get('/api/students')
         .then(res => {
             setData(res.data)
         })
@@ -28,7 +31,7 @@ function Home() {
     }
 
     function handleDelete(id) {
-        axios.delete(`/api/delete/${id}`)
+        axiosInstance.delete(`/api/delete/${id}`)
         .then(res => {
             setDeleted(true)
             setStudentToDelete(null)
