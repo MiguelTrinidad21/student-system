@@ -2,13 +2,17 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || '', // fallback to '' for local dev proxy
+})
+
 function Read() {
 
     const [data, setData] = useState([])
     const { id } = useParams()
 
     useEffect(() => {
-        axios.get(`/api/get_student/${id}`)
+        axiosInstance.get(`/api/get_student/${id}`)
         .then(res => {
             setData(res.data)
         })

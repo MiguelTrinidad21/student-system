@@ -4,6 +4,10 @@ import { Link, useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || '', // fallback to '' for local dev proxy
+})
+
 function Create() {
     const [values, setValues] = useState({
         name: '',
@@ -12,11 +16,11 @@ function Create() {
         age: ''
     })
 
-
     const navigate = useNavigate()
+
     function handleSubmit(e) {
         e.preventDefault()
-        axios.post('/api/add_user', values)
+        axioInstance.post('/api/add_user', values)
         .then((res) => {
             navigate('/')
             console.log(values)

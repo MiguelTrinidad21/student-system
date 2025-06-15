@@ -4,6 +4,9 @@ import { Link, useParams } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
 
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || '', // fallback to '' for local dev proxy
+})
 
 function Search() {
     const { nameToFind } = useParams()
@@ -19,7 +22,7 @@ function Search() {
             setDeleted(false)
         }
 
-        axios.get(`/api/search/${nameToFind}`)
+        axiosInstance.get(`/api/search/${nameToFind}`)
         .then(res => {
             setData(res.data)
         })
@@ -31,7 +34,7 @@ function Search() {
     }
 
     function handleDelete(id) {
-        axios.delete(`/api/delete/${id}`)
+        axiosInstance.delete(`/api/delete/${id}`)
         .then(res => {
             setDeleted(true)
             setStudentToDelete(null)
