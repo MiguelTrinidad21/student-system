@@ -1,4 +1,4 @@
-require('dotenv')
+require('dotenv').config()
 
 const express = require('express')
 const mysql = require('mysql')
@@ -8,7 +8,15 @@ const path = require('path')
 const app = express()
 
 app.use(express.static(path.join(__dirname, "public")))
-app.use(cors())
+
+// Use this for testing
+// app.use(cors())
+
+// Use this before production
+app.use(cors({
+  origin: 'https://student-system-frontend-o4sd.onrender.com/'
+}))
+
 app.use(express.json())
 
 const port = process.env.PORT || 5000
@@ -19,6 +27,15 @@ const db = mysql.createConnection({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME
 })
+
+db.connect((err) => {
+  if (err) {
+    console.error("Database connection failed:", err);
+    process.exit(1); // stop the server
+  } else {
+    console.log("Connected to MySQL database");
+  }
+});
 
 app.post('/api/add_user', (req, res) => {
     const sql = "INSERT INTO student_details (name, email, gender, age) VALUES (?, ?, ?, ?)"
