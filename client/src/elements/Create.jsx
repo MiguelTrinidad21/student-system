@@ -20,7 +20,7 @@ function Create() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        axioInstance.post('/api/add_user', values)
+        axiosInstance.post('/api/add_user', values)
         .then((res) => {
             navigate('/')
             console.log(values)
