@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, "public")))
 
 // Use this before production
 app.use(cors({
-  origin: 'https://student-system-frontend-o4sd.onrender.com/'
+  origin: 'https://student-system-frontend-o4sd.onrender.com'
 }))
 
 app.use(express.json())
