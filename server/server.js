@@ -38,6 +38,11 @@ db.connect((err) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.send("Server is up and running!");
+});
+
+
 app.post('/api/add_user', (req, res) => {
     const sql = "INSERT INTO student_details (name, email, gender, age) VALUES (?, ?, ?, ?)"
     const values = [
