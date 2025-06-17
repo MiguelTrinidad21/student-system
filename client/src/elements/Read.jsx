@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '', // fallback to '' for local dev proxy
+  baseURL: import.meta.env.VITE_API_URL
 })
 
 function Read() {

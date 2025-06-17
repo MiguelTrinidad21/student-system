@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '', // fallback to '' for local dev proxy
+  baseURL: import.meta.env.VITE_API_URL
 })
 
 function Edit() {
