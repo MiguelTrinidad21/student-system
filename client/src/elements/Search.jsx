@@ -60,7 +60,8 @@ function Search() {
                     type="text" 
                     placeholder="Search by Name" 
                     value={name} 
-                    onChange={handleChange}/>
+                    onChange={handleChange}
+                    required/>
 
                     <Link to={`/search/${name}`}>
                         <button className="bg-blue-600 text-white w-[50px] h-[40px] rounded-tr-[30px] rounded-br-[30px] shadow-md cursor-pointer md:w-[60px] lg:w-[80px] lg:text-2xl lg:h-[60px]">
